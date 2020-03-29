@@ -15,9 +15,16 @@
       <div>
         <div class="btn-group btn-group-justified" role="group">
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default" style="text-align: left;"><b>{{question.question}}</b>
-              <span class="badge" style="float: right;">Vastauksia: {{question.answerCount}}</span><br>
-              <span class="badge" style="float: right;">Pisteet: {{question.netScore}}</span></button>
+            <button type="button" class="btn btn-default" style="text-align: left;">
+              <h4>{{question.question}}
+                <span class="label label-info" style="float: right;">V: {{question.answerCount}} | P:
+                  {{question.netScore}}</span>
+              </h4>
+              {{#each category in question.categories}}
+              <span class="label label-primary">{{category}}</span>
+              {{/each}}
+              <a href="/question/{{question._id}}/edit"><span class="label label-primary category-modify">+</span></a>
+            </button>
           </div>
         </div>
       </div>

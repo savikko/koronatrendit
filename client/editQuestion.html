@@ -1,0 +1,11 @@
+<template name='editQuestion'>
+    {{#autoForm collection="Questions" id="editQuestion" doc=this type="update" validation="blur"}}
+    <fieldset>
+        <legend>Muokkaa ilmiön <i>{{this.question}}</i> kategorioita</legend>
+        {{> afQuickField name='categories' type="universe-select" create=true}}
+    </fieldset>
+    <p>Kategorioita tullaan käyttämään jollain tavalla ilmiöiden ryhmittelyssä.</p>
+    <p>Voit lisätä uuden kategorian kirjoittamalla sen riville</p>
+    <button type="submit" class="btn btn-primary">Muokkaa</button>
+    {{/autoForm}}
+</template>
