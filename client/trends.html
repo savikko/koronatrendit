@@ -1,0 +1,59 @@
+<template name="Trends">
+  <center>
+    ‹‹‹ Asiat, joiden arvo/esiintyvyys laskee
+    <br>
+    Asiat, joiden arvo/esiintyvyys nousee ›››
+
+  </center>
+
+  <div class="row">
+    &nbsp;
+  </div>
+  {{#each question in questions}}
+  <div class="col-md-4 col-md-offset-{{offsetCount question.netScore}}">
+    <div class="row">
+      <div>
+        <div class="btn-group btn-group-justified" role="group">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default" style="text-align: left;"><b>{{question.question}}</b>
+              <span class="badge" style="float: right;">Vastauksia: {{question.answerCount}}</span><br>
+              <span class="badge" style="float: right;">Pisteet: {{question.netScore}}</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <div class="btn-group btn-group-justified" role="group">
+          <div class="btn-group btn-group-justified" role="group">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-danger answer" data-question="{{question._id}}" data-answer="-"><span
+                  class="badge">{{answercount '-' question._id}}</span> -</button>
+            </div>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default answer" data-question="{{question._id}}"
+                data-answer="EOS"><span class="badge">{{answercount 'EOS' question._id}}</span>
+                EOS</button>
+            </div>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default answer" data-question="{{question._id}}" data-answer="EM">Ei
+                muutosta <span class="badge">{{answercount 'EM' question._id}}</span>
+              </button>
+            </div>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-success answer" data-question="{{question._id}}" data-answer="+">+
+                <span class="badge">{{answercount '+' question._id}}</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    &nbsp;
+  </div>
+  <div class="row">
+    &nbsp;
+  </div>
+  {{/each}}
+</template>

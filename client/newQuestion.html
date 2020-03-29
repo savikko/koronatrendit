@@ -1,0 +1,11 @@
+<template name='newQuestion'>
+{{#autoForm collection="Questions" id="newQuestion" type="insert" validation="blur"}}
+    <fieldset>
+      <legend>Lisää uusi</legend>
+      {{> afQuickField name='question'}}
+    </fieldset>
+    <p>Vältä eksakteja tuotenimiä, mutta tarkenna ilmiötä mahdollisimman hyvin. Esimerkiksi ei <i>Netflix</i>, vaan <i>Tilausvideopalvelut (VOD)</i>.</p>
+    <p>Lisäämäsi ilmiö lisätään välittömästi äänestettäväksi. Se näkyy ensin alimmaisena (koska järjestys on äänestysmäärien mukaan laskevasti).</p>
+    <button type="submit" class="btn btn-primary">Lisää</button>
+{{/autoForm}}
+</template>
