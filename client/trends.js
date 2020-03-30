@@ -39,20 +39,6 @@ Template.Trends.helpers({
     });
     return totalAnswerers;
   },
-  offsetCount: function (netScore) {
-    if (netScore === 0) {
-      return "4";
-    } else {
-      var intScore = parseInt(netScore + 4);
-      if (intScore < 0) {
-        return "0";
-      } else if (intScore > 8) {
-        return "8";
-      } else {
-        return intScore.toString();
-      }
-    }
-  },
   percent: function (answer, question) {
     answersCount = AnswerCounts.findOne({ answer: answer, question: question }).answerCount;
     var totalAnswerers = 0;
@@ -60,6 +46,15 @@ Template.Trends.helpers({
       totalAnswerers += doc.answerCount;
     });
     return Math.round(answersCount / totalAnswerers * 100);
+  },
+  scoreClass: function (score) {
+    if (score===0) {
+      return 'info';
+    } else if (score>0) {
+      return 'success';
+    } else if (score<0) {
+      return 'danger';
+    }
   }
 });
 

@@ -1,86 +1,80 @@
 <template name="Trends">
   <div class="row">
-    <p>Voit antaa äänesi ilmiölle painamalla ilmiön alta + / - / EOS / Ei muutosta. Plussa kertoo, että uskot, että kyseinen ilmiö tulee kasvamaan koronan myötä. Miinus kertoo, että kyseinen ilmiö vähenee koronan myötä.</p>
-    <p>V: XX | P: YY kertoo Vastauksien määrän (XX) ja pisteytyksen (YY). Pisteytys on karkeasti plussat - miinukset.</p>
-    <p>Sinisellä + -napilla voit lisätä/muokata ilmiön kategorioita ja oikealta ylhäältä Lisää uusi -linkistä saat lisättyä uuden ilmiön.</p>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="btn-group btn-group-justified" role="group">
-        <div class="btn-group" role="group">
-          <button class="btn btn-info" style="background-image: linear-gradient(to right, red , green);">
-            <span class="pull-left">‹‹‹ Asiat, joiden arvo/esiintyvyys laskee</span>
-            
-            <span class="pull-right">Asiat, joiden arvo/esiintyvyys nousee ›››</span>
-
-          </button>
-        </div>
-      </div>
+    <div class="col-md-8 col-md-offset-2">
+    <p>Voit antaa äänesi ilmiölle painamalla ilmiön alta + / - / EOS / Ei muutosta. Plussa kertoo, että uskot, että
+      kyseinen ilmiö tulee kasvamaan koronan myötä. Miinus kertoo, että kyseinen ilmiö vähenee koronan myötä.</p>
+    <p>V: XX kertoo Vastauksien määrän (XX). Pisteytys on kerrottu sen yläpuolella. Pisteytys on karkeasti plussat - miinukset.
+    </p>
+    <p>Sinisellä + -napilla voit lisätä/muokata ilmiön kategorioita ja oikealta ylhäältä Lisää uusi -linkistä saat
+      lisättyä uuden ilmiön.</p>
     </div>
   </div>
-
 
   <div class="row">
     &nbsp;
   </div>
-{{#each category in categories}}
-
+  {{#each category in categories}}
   <a id="{{category}}"></a>
-  <h3><span class="label label-primary">{{category}}</span></h3>
-
-  {{#each question in questions category}}
-  <div class="col-md-4 col-md-offset-{{offsetCount question.netScore}}">
-    <div class="row">
-      <div>
-        <div class="btn-group btn-group-justified" role="group">
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default" style="text-align: left;">
-              <h4>{{question.question}}
-                <span class="label label-info" style="float: right;">V: {{question.answerCount}} | P:
-                  {{question.netScore}}</span>
-              </h4>
-              {{#each category in question.categories}}
-              <a href="#{{category}}"><span class="label label-primary">{{category}}</span></a>
-              {{/each}}
-              <a href="/question/{{question._id}}/edit"><span class="label label-primary category-modify">+</span></a>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div>
-        <div class="btn-group btn-group-justified" role="group">
-          <div class="btn-group btn-group-justified" role="group">
-            <div class="btn-group" role="group">
-              <button type="button" class="btn btn-danger answer" data-question="{{question._id}}" data-answer="-"><span
-                  class="badge">{{answercount '-' question._id}}</span> -</button>
-            </div>
-            <div class="btn-group" role="group">
-              <button type="button" class="btn btn-default answer" data-question="{{question._id}}"
-                data-answer="EOS"><span class="badge">{{answercount 'EOS' question._id}}</span>
-                EOS</button>
-            </div>
-            <div class="btn-group" role="group">
-              <button type="button" class="btn btn-default answer" data-question="{{question._id}}" data-answer="EM">Ei
-                muutosta <span class="badge">{{answercount 'EM' question._id}}</span>
-              </button>
-            </div>
-            <div class="btn-group" role="group">
-              <button type="button" class="btn btn-success answer" data-question="{{question._id}}" data-answer="+">+
-                <span class="badge">{{answercount '+' question._id}}</span></button>
+  <center><h3><span class="label label-primary">{{category}}</span></h3></center>
+  <br>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      {{#each question in questions category}}
+      <div class="col-md-12">
+        <div class="row">
+          <div>
+            <div class="btn-group btn-group-justified" role="group">
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default" style="text-align: left;">
+                  <h4>{{question.question}}
+                    <span class="label label-{{scoreClass question.netScore}}"
+                      style="float: right;">{{question.netScore}}</span>
+                  </h4>
+                  <span class="label label-default" style="float: right;">V: {{question.answerCount}}</span>
+                  {{#each category in question.categories}}
+                  <a href="#{{category}}"><span class="label label-primary">{{category}}</span></a>
+                  {{/each}}
+                  <a href="/question/{{question._id}}/edit"><span
+                      class="label label-primary category-modify">+</span></a>
+                </button>
+              </div>
             </div>
           </div>
         </div>
+        <div class="row">
+          <div>
+            <div class="btn-group btn-group-justified" role="group">
+              <div class="btn-group btn-group-justified" role="group">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-danger answer" data-question="{{question._id}}"
+                    data-answer="-"><span class="badge">{{answercount '-' question._id}}</span> -</button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default answer" data-question="{{question._id}}"
+                    data-answer="EOS"><span class="badge">{{answercount 'EOS' question._id}}</span>
+                    EOS</button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default answer" data-question="{{question._id}}"
+                    data-answer="EM">Ei
+                    muutosta <span class="badge">{{answercount 'EM' question._id}}</span>
+                  </button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-success answer" data-question="{{question._id}}"
+                    data-answer="+">+
+                    <span class="badge">{{answercount '+' question._id}}</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <div class="row">
+        &nbsp;
+      </div>
+      {{/each}}
     </div>
-  </div>
-  <div class="row">
-    &nbsp;
-  </div>
-  <div class="row">
-    &nbsp;
   </div>
   {{/each}}
-{{/each}}
 </template>
