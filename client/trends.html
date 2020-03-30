@@ -1,12 +1,20 @@
 <template name="Trends">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-    <p>Voit antaa äänesi ilmiölle painamalla ilmiön alta + / - / EOS / Ei muutosta. Plussa kertoo, että uskot, että
-      kyseinen ilmiö tulee kasvamaan koronan myötä. Miinus kertoo, että kyseinen ilmiö vähenee koronan myötä.</p>
-    <p>V: XX kertoo Vastauksien määrän (XX). Pisteytys on kerrottu sen yläpuolella. Pisteytys on karkeasti plussat - miinukset.
-    </p>
-    <p>Sinisellä + -napilla voit lisätä/muokata ilmiön kategorioita ja oikealta ylhäältä Lisää uusi -linkistä saat
-      lisättyä uuden ilmiön.</p>
+      <p>Voit antaa äänesi ilmiölle painamalla ilmiön alta + / - / EOS / Ei muutosta. Plussa kertoo, että uskot, että
+        kyseinen ilmiö tulee kasvamaan koronan myötä. Miinus kertoo, että kyseinen ilmiö vähenee koronan myötä.</p>
+      <p>V: XX kertoo Vastauksien määrän (XX). Pisteytys on kerrottu sen yläpuolella. Pisteytys on karkeasti plussat -
+        miinukset.
+      </p>
+      <p>Sinisellä + -napilla voit lisätä/muokata ilmiön kategorioita ja oikealta ylhäältä Lisää uusi -linkistä saat
+        lisättyä uuden ilmiön.</p>
+      <p>Tällä hetkellä lisätyt kategoriat (klikkaa niin pääset suoraan kategorian kohdalle):
+        <ul>
+          {{#each category in categories}}
+          <li><a href="#{{category}}">{{category}}</a></li>
+          {{/each}}
+        </ul>
+      </p>
     </div>
   </div>
 
@@ -15,7 +23,9 @@
   </div>
   {{#each category in categories}}
   <a id="{{category}}"></a>
-  <center><h3><span class="label label-primary">{{category}}</span></h3></center>
+  <center>
+    <h3><span class="label label-primary">{{category}}</span></h3>
+  </center>
   <br>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
