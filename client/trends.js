@@ -1,7 +1,28 @@
 Template.Trends.helpers({
-  questions: function () {
-    questions = Questions.find();
+  categories: function () {
+    var allCategories = [];
+    var allCategories = _.map(Questions.find().fetch(), function (value) {
+      if (typeof value.categories !== "undefined") { return value.categories }
+    });
+    var flattenedCategories = _.flatten(allCategories);
+    var falsesOutCategories = _.compact(flattenedCategories);
+    var uniquedCategories = _.uniq(falsesOutCategories);
+    var categories = _.map(uniquedCategories, function (value) {
+      if (value) {
+        return value;
+      }
+    });
+    categories.push('Kategoriaa ei asetettu');
+    return categories;
+  },
+  questions: function (category) {
+    if (category === 'Kategoriaa ei asetettu') {
+      questions = Questions.find({ categories: null });
+    } else {
+      questions = Questions.find({ categories: category });
+    }
     return questions;
+
   },
   answercount: function (answer, question) {
     var answerObject = AnswerCounts.findOne({ answer: answer, question: question });
